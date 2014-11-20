@@ -1,19 +1,17 @@
 import Ember from 'ember';
 
 function generateBoard(){
-	var size = 30;
+	var size = 10;
 	
 	var board = [];
 
-    for (var x = 1; x < size; x++) { //1st case is unbombable because player's spawn
+    for (var x = 0; x < size; x++) { 
         board[x] = [];
         for (var y = 0; y < size; y++) {
-            board[x][y] = [Math.random()<.8 ? 0 : 1];
+        	board[x][y] = [Math.random()<.8 ? 0 : 1];
         }
     }
-
-    alert(board);
-
+    board[0][0] = [0];		//1st case is the player's spawn, so unbombable
 	return board;
 }
 
