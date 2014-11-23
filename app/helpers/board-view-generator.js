@@ -9,12 +9,11 @@ export default Ember.Handlebars.makeBoundHelper(function(board) {
 		boardHTML += '<tr>';
 		for (var j = 0; j < board[i].length; j++) {
 			if((i == 0) && (j == 0)){
-				boardHTML += '<td id="'+j+'_'+i+'" class="player">';
-				boardHTML += '<a href="#"> ';
-				boardHTML += '</a>';
-				boardHTML += '</td>';
+				boardHTML += '<td id="'+j+'_'+i+'" class="player" data-x="'+j+'" data-y="'+i+'">';
 			}
-			boardHTML += '<td id="'+j+'_'+i+'">';
+			else{
+				boardHTML += '<td id="'+j+'_'+i+' class="blank" data-x="'+j+'" data-y="'+i+'">';
+			}
 			boardHTML += '<a href="#">'+board[i][j];
 			boardHTML += '</a>';
 			boardHTML += '</td>';
