@@ -16,10 +16,6 @@ export default Ember.View.extend({
 			x = td_parent.data('x'),
 			y = td_parent.data('y');
 
-		console.log(x+'_'+y);
-
-		//à partir de là ça merdouille... incompréhensible jusque fin de "click"
-
 		if(((x >= 0) && (y >= 0)) && ((x < board[0].length) && (y < board[0].length))){
 			var moveState = checkMove(x,y,this.currentPosition[0],this.currentPosition[1]);
 			console.log(moveState);
@@ -48,6 +44,8 @@ export default Ember.View.extend({
 function actualizeColors(board,accessibleSquares){
 	for (var i = accessibleSquares.length - 1; i >= 0; i--) {
 		var square = accessibleSquares[i];
+		if($('#'+square[0]+'_'+square[1]).hasClass('blank'))
+			$('#'+square[0]+'_'+square[1]).removeClass('blank');
 		$('#'+square[0]+'_'+square[1]).addClass(getSquareColor(board,square));
 	};
 }
