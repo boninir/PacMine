@@ -7,7 +7,7 @@ function generateBoard(){
     for (var x = 0; x < size; x++) { 
         board[x] = [];
         for (var y = 0; y < size; y++) {
-        	board[x][y] = [Math.random()<.8 ? 0 : 1];
+        	board[x][y] = [Math.random()<.5 ? 0 : 1];
         }
     }
     board[0][0] = [0];								//1st case is the player's spawn, so unbombable.
@@ -66,10 +66,6 @@ function verifyBoard(board,x,y,flag){
 				check(x-1,y+1)
 				flag = verifyBoard(board,x-1,y+1,flag);
 			}
-			if((board[x][y+1] == 0) && (flag != 0) && !(isChecked(x,y+1))){
-				check(x,y+1);
-				flag = verifyBoard(board,x,y+1,flag);
-			}
 		}
 	}
 	if (x+1 < board.length) {
@@ -89,13 +85,21 @@ function verifyBoard(board,x,y,flag){
 			}
 	}
 
+	if (y+1 < board.length){
+		if((board[x][y+1] == 0) && (flag != 0) && !(isChecked(x,y+1))){
+			check(x,y+1);
+			flag = verifyBoard(board,x,y+1,flag);
+		}
+	}
+
 	return flag;
 }
 
 
-
 export default Ember.Route.extend({
 	model: function() {
-		return {board: getBoard()};
+		return {
+			board: getBoard()
+		};
 	}
 });

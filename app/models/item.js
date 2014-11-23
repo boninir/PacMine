@@ -1,5 +1,6 @@
 import Ember from 'ember';
 
+
 //8 chances out of 10 that the money or progress change will be positive 
 
 function sign(){
@@ -29,14 +30,8 @@ Ember.Object.create(
 Ember.Object.create(
 	{type: 3}, 		//Trainee
 	{basicSpeed: 10},
-	{moneyChange: function(){
-			return Math.floor(((Math.random() * 20) + 1)*sign());
-		}
-	},
-	{progressChange: function(){
-			return Math.floor(((Math.random() * 10) + 1)*sign());
-		}
-	}
+	{moneyChange: 0},
+	{progressChange: 0}
 )
 
 ];
