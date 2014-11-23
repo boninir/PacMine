@@ -150,42 +150,6 @@ function getBombCount(board,square){
 	return count;
 }
 
-function updateCurentPos(x,y) {
-	return $('.player').attr('id', x + '_' + y);
-}
-
-window.onkeydown = function(e) {
-	var key = e.keyCode || e.which;
-	var currentPosition = $('.player').attr('id').split("_");
-	var x = currentPosition[0];
-	var y = currentPosition[1];
-
-	switch (key) {
-	    case 37:	//left
-		    // var currentPosition = updateCurentPos((x -1), y);
-		    // alert(currentPosition.attr('id'));
-		    x--;
-		    var currentPosition = currentPosition.attr('id', x + '_' + y);
-		    alert(currentPosition.attr('id'));
-		    break;
-
-	    case 38:	//up
-	    	var currentPosition = updateCurentPos(x, (y - 1));
-		    alert(currentPosition.attr('id'));
-		    break;
-		
-		case 39:	//right
-		    var currentPosition = updateCurentPos(x + 1, y);
-		    alert(currentPosition.attr('id'));
-		    break;
-		
-		case 40:	//down
-		    var currentPosition = updateCurentPos(x, y + 1);
-		    alert(currentPosition.attr('id'));
-		    break;
-	}
-};
-
 function checkMove(x,y,oldx,oldy){
 	var res = ((x == oldx+1) && (y == oldy)) ;
 	res = (res || ((x == oldx-1) && (y == oldy)));
@@ -194,3 +158,25 @@ function checkMove(x,y,oldx,oldy){
 
 	return res;
 }
+
+window.onkeydown = function(e) {
+	var key = e.keyCode || e.which;
+
+	switch (key) {
+	    case 37:	//left
+		    alert('left');
+		    break;
+
+	    case 38:	//up
+	    	alert('up');
+		    break;
+		
+		case 39:	//right
+		    alert('right');
+		    break;
+		
+		case 40:	//down
+		    alert('down');
+		    break;
+	}
+};
