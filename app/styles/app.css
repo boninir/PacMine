@@ -47,3 +47,13 @@ a {
 .fleft {
 	float: left;
 }
+
+
+.blank{background-color: #FFFFFF;}
+.black{background-color: #000000;}
+.red{background-color: #FF0000;}
+.orange{background-color: #FF8C00;}
+.yellow{background-color: #FFFF00;}
+.player{background-image: url(image/player.png);}
+.win{background-image: url(image/win.png);}
+.lost{background-image: url(image/lost.png);}

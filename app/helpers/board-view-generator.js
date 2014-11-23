@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Handlebars.makeBoundHelper(function(board) {
 	
 	
-	var boardHTML = '<table id="pac-mine">';
+	var boardHTML = '<table id="pac-mine" border=1>';
 
 	for (var i = 0; i < board.length; i++) {
 		boardHTML += '<tr>';
@@ -12,9 +12,9 @@ export default Ember.Handlebars.makeBoundHelper(function(board) {
 				boardHTML += '<td id="'+i+'_'+j+'" class="player" data-x="'+i+'" data-y="'+j+'">';
 			}
 			else{
-				boardHTML += '<td id="'+i+'_'+j+'" class="blank" data-x="'+i+'" data-y="'+j+'">';
+				boardHTML += '<td id="'+i+'_'+j+'" class="blanck" data-x="'+i+'" data-y="'+j+'">';
 			}
-			boardHTML += '<a href="#">'+board[i][j];
+			boardHTML += '<a href="#">';
 			boardHTML += '</a>';
 			boardHTML += '</td>';
 		}

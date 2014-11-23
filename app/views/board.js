@@ -102,23 +102,30 @@ function getNearestSquares(board,currentPosition){
 function getSquareColor(board,square){
 	var count = getBombCount(board,square);
 
-	if(count == 0){
-		return "blank";
-	}
-	if(count >= 7){
-		return "black";
-	}
-	if(count >= 5){
-		return "red";
-	}
-	if(count >= 3){
-		return "orange";
-	}
-	if(count > 0){
-		return "yellow";
-	}
+	switch (count) {
+	    case 0:
+		    return "blank";
+		    break;
 
-	return "error";
+	    case > 0:	
+		    return "yellow";
+		    break;
+
+		case >= 3:	
+		    return "orange";
+		    break;
+
+		case >= 5:
+		    return "red";
+		    break;
+
+		case >= 7:
+	    	return "black";
+		    break;
+		
+		default:
+			return "error";
+	}
 }
 
 function getBombCount(board,square){
