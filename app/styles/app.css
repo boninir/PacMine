@@ -3,19 +3,17 @@
   margin: 0 auto;
 }
 
+.ending{
+	border: 2;
+	border-color:#FF0000;
+}
+
 table {
 	border-collapse: collapse;
 }
 td {
 	height: 30px;
 	width: 30px;
-}
-
-td.nearbomb {
-	background-color: red;
-}
-td.free {
-	background-color: white;
 }
 
 a {
@@ -27,19 +25,6 @@ a {
 	text-decoration: none;
 }
 
-.js-pion {
-	text-decoration: none;
-	color: inherit;
-}
-
-.selected {
-	background-color: green !important;
-	opacity: 0.8;
-}
-.pion-selected {
-	border: 2px solid green;
-}
-
 .center {
 	text-align: center;
 }
@@ -47,7 +32,6 @@ a {
 .fleft {
 	float: left;
 }
-
 
 .blank{background-color: #FFFFFF;}
 .black{background-color: #000000;}

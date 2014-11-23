@@ -7,9 +7,6 @@ export default Ember.View.extend({
 
 		var board = this.get('controller.model.board');
 
-		var nearestSquares = getNearestSquares(board,this.currentPosition);
-
-		actualizeColors(board, nearestSquares);
 
 		var clicked = e.target,
 			td_parent = $(e.target).parent('td'),
@@ -22,11 +19,16 @@ export default Ember.View.extend({
 			if(moveState == true){
 				console.log(board[x][y]);
 				if(board[x][y] == 0){
-					console.log('valid move');
+					var nearestSquares = getNearestSquares(board,[x,y]);
+					actualizeColors(board, nearestSquares);
 					$('#'+this.currentPosition[0]+'_'+this.currentPosition[1]).removeClass('player');
 					this.currentPosition[0] = x;
 					this.currentPosition[1] = y;
 					$('#'+x+'_'+y).addClass('player');
+					if((x == board[0].length - 1) && (y == board[0].length - 1)){
+						alert('you won !');
+						location.reload();
+					}
 				}else{
 					$('#'+this.currentPosition[0]+'_'+this.currentPosition[1]).removeClass('player');
 					this.currentPosition[0] = x;
@@ -48,9 +50,14 @@ export default Ember.View.extend({
 function actualizeColors(board,accessibleSquares){
 	for (var i = accessibleSquares.length - 1; i >= 0; i--) {
 		var square = accessibleSquares[i];
+		var colorTuple = getSquareColor(board,square);
 		if($('#'+square[0]+'_'+square[1]).hasClass('blank'))
 			$('#'+square[0]+'_'+square[1]).removeClass('blank');
-		$('#'+square[0]+'_'+square[1]).addClass(getSquareColor(board,square));
+		$('#'+square[0]+'_'+square[1]).addClass(colorTuple[0]);
+		console.log(colorTuple[1]);
+		if(colorTuple[1] != null){
+			$('#'+square[0]+'_'+square[1]).html('<a href=#>'+colorTuple[1]+'</a>');
+		}
 	};
 }
 
@@ -105,24 +112,32 @@ function getNearestSquares(board,currentPosition){
 
 function getSquareColor(board,square){
 	var count = getBombCount(board,square);
+	var res = [];
+
+	if(count > 0){
+		res[0] = "yellow";
+		res[1] = parseInt(count);
+	}
+	
+	if(count >= 2){
+		res[0] = "orange";
+		res[1] = parseInt(count);
+	}
+	
+	if(count >= 4){
+		res[0] = "red";
+		res[1] = parseInt(count);
+	}
+	
+	if(count >= 7){
+		res[0] = "black";
+		res[1] = parseInt(count);
+	}
 
 	if(count == 0){
-		return "blank";
+		res[0] = "blank";
 	}
-	if(count >= 7){
-		return "black";
-	}
-	if(count >= 5){
-		return "red";
-	}
-	if(count >= 3){
-		return "orange";
-	}
-	if(count > 0){
-		return "yellow";
-	}
-
-	return "error";
+	return res;
 }
 
 function getBombCount(board,square){
