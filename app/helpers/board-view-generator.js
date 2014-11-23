@@ -11,7 +11,7 @@ export default Ember.Handlebars.makeBoundHelper(function(board) {
 				boardHTML += '<td id="'+j+'_'+i+'" class="player">';
 			}
 			else{
-				boardHTML += '<td id="'+j+'_'+i+'">';
+				boardHTML += '<td id="'+j+'_'+i+' class="blank">';
 			}
 			boardHTML += '<a href="#">'+board[i][j];
 			boardHTML += '</a>';
