@@ -27,9 +27,13 @@ export default Ember.View.extend({
 					this.currentPosition[0] = x;
 					this.currentPosition[1] = y;
 					$('#'+x+'_'+y).addClass('player');
-				}
-				else{
-					alert('you lost !');
+				}else{
+					$('#'+this.currentPosition[0]+'_'+this.currentPosition[1]).removeClass('player');
+					this.currentPosition[0] = x;
+					this.currentPosition[1] = y;
+					$('#'+x+'_'+y).addClass('lost');
+					alert('you lost ! ');
+					location.reload();
 				}
 			}
 			else
@@ -102,30 +106,23 @@ function getNearestSquares(board,currentPosition){
 function getSquareColor(board,square){
 	var count = getBombCount(board,square);
 
-	switch (count) {
-	    case 0:
-		    return "blank";
-		    break;
-
-	    case > 0:	
-		    return "yellow";
-		    break;
-
-		case >= 3:	
-		    return "orange";
-		    break;
-
-		case >= 5:
-		    return "red";
-		    break;
-
-		case >= 7:
-	    	return "black";
-		    break;
-		
-		default:
-			return "error";
+	if(count == 0){
+		return "blank";
 	}
+	if(count >= 7){
+		return "black";
+	}
+	if(count >= 5){
+		return "red";
+	}
+	if(count >= 3){
+		return "orange";
+	}
+	if(count > 0){
+		return "yellow";
+	}
+
+	return "error";
 }
 
 function getBombCount(board,square){
